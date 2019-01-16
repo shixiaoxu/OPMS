@@ -201,6 +201,26 @@
                           </div>
                         </li>
                         <li>
+                          <div class="form-group" data-cmodel="文件申报-approval||declaration-manage"> 文件申报：
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="permission[]" value="declaration-manage">
+                            文件申报列表 </label>
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="permission[]" value="declaration-add">
+                            申请申报 </label>
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="permission[]" value="declaration-edit">
+                            编辑申报 </label>
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="permission[]" value="declaration-view">
+                            申报查看 </label>
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="permission[]" value="declaration-approval">
+                            审批 </label>
+                          </div>
+                        </li>
+
+                        <li>
                           <div class="form-group" data-cmodel="出差-approval||businesstrip-manage"> 出差：
                             <label class="checkbox-inline">
                             <input type="checkbox" name="permission[]" value="businesstrip-manage">

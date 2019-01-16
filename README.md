@@ -29,26 +29,3 @@ http://opms.docs.milu365.cn/
 
 http://opms.demo.milu365.cn/
 
-加QQ群（871221961）获取用户名和密码
-
-技术讨论群：
-
-# QQ群1(已满)：451420312 
-# QQ群2(已满)：592130397 
-# QQ群3(已满)：651479008
-# QQ群4(已满)：660307579
-# QQ群5(已满): 753661431 
-# QQ群6: 871221961
-
-# 捐赠
-支付宝：
-
-![image](https://github.com/lock-upme/OPMS/blob/master/static/img/qrcode_alipay.png)
-
-微信:
-
-![image](https://github.com/lock-upme/OPMS/blob/master/static/img/qrcode_wechat.png)
-
-# 效果图预览
-
-![image](https://github.com/lock-upme/OPMS/blob/master/static/img/opms-view.png)

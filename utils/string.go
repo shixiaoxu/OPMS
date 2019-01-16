@@ -3,6 +3,7 @@ package utils
 import (
 	"crypto/rand"
 	"math/big"
+	"path"
 
 	"net/smtp"
 	"regexp"
@@ -114,4 +115,8 @@ func RemoveDuplicatesAndEmpty(a []string) (ret []string) {
 		ret = append(ret, a[i])
 	}
 	return
+}
+
+func GetFileName(link string) string {
+	return path.Base(link)
 }

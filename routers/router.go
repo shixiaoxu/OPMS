@@ -4,6 +4,7 @@ import (
 	"opms/controllers/albums"
 	"opms/controllers/businesstrips"
 	"opms/controllers/checkworks"
+	"opms/controllers/declarations"
 	"opms/controllers/expenses"
 	"opms/controllers/goouts"
 	"opms/controllers/groups"
@@ -235,4 +236,12 @@ func init() {
 	beego.Router("/permission/add", &groups.FormPermissionController{})
 	beego.Router("/permission/edit/:id", &groups.FormPermissionController{})
 
+	//石晓旭->文件申报
+	beego.Router("/declaration/manage", &declarations.ManagerDeclarationController{})
+	beego.Router("/declaration/approval", &declarations.ApprovalDeclarationController{})
+	beego.Router("/declaration/add", &declarations.AddDeclarationController{})
+	beego.Router("/declaration/approval/:id", &declarations.ShowDeclarationController{})
+	beego.Router("/declaration/edit/:id", &declarations.EditDeclarationController{})
+	beego.Router("/declaration/ajax/status", &declarations.AjaxDeclarationStatusController{})
+	beego.Router("/declaration/ajax/delete", &declarations.AjaxDeclarationDeleteController{})
 }

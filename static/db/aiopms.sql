@@ -1328,3 +1328,49 @@ INSERT INTO `pms_users_profile` VALUES ('1467191338628906628', '张三', '1', '1
 INSERT INTO `pms_users_profile` VALUES ('1468140265954907628', '李四', '1', '1994-08-11', 'cto@nahehuo.com', 'zs-milu365', '903561702', '13524396586', '021-84122521', '九新公路华西办公楼', 'lock', '135245132623', '1462290127694985332', '1462292053049130632', '0', '', '0');
 INSERT INTO `pms_users_profile` VALUES ('1468915433602979028', '朱笑天', '1', '1992-09-10', 'test@test.coma', 'zs-milu365', '903561702', '13524512531', '021-84122521', '外滩一号', 'lock', '135245132623', '1462290199274575028', '1462292041515367932', '0', '', '0');
 INSERT INTO `pms_users_profile` VALUES ('1469024587469707428', '李浩', '1', '1997-09-06', 'test@test.com', 'ls-milu365', '903561702', '13521234231', '021-84122521', '外滩一号', '李呀', '135245132623', '1462290228639093428', '1462292006260420932', '1', '', '1490691365');
+
+
+-- ----------------------------
+-- Table structure for pms_declarations
+-- ----------------------------
+DROP TABLE IF EXISTS `pms_declarations`;
+CREATE TABLE `pms_declarations` (
+  `declarationid` bigint(20) NOT NULL,
+  `userid` bigint(20) DEFAULT NULL,
+  `objects` varchar(8) NOT NULL COMMENT '申报项目json',
+  `types` varchar(200) DEFAULT NULL COMMENT '申报类型json',
+  `contents` varchar(1000) DEFAULT NULL COMMENT '申报明细json',
+  `files` varchar(100) DEFAULT NULL COMMENT '1同',
+  `result` tinyint(1) DEFAULT NULL COMMENT '1同意2拒绝',
+  `status` tinyint(1) DEFAULT '1' COMMENT '1草稿2正常发布',
+  `approverids` varchar(200) DEFAULT NULL COMMENT '审批人串',
+  `created` int(10) DEFAULT NULL,
+  `changed` int(10) DEFAULT NULL,
+  PRIMARY KEY (`declarationid`),
+  KEY `INDEX_UTRSC` (`userid`,`types`,`result`,`status`,`created`,`changed`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件申报表';
+
+-- ----------------------------
+-- Records of pms_declarations
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for pms_declarations_approver
+-- ----------------------------
+DROP TABLE IF EXISTS `pms_declarations_approver`;
+CREATE TABLE `pms_declarations_approver` (
+  `approverid` bigint(20) NOT NULL,
+  `declarationid` bigint(20) DEFAULT NULL COMMENT '报销表ID',
+  `userid` bigint(20) DEFAULT NULL COMMENT '审批人Userid',
+  `summary` varchar(500) DEFAULT NULL COMMENT '说明',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1同意2拒绝',
+  `created` int(10) DEFAULT NULL,
+  `changed` int(10) DEFAULT NULL,
+  PRIMARY KEY (`approverid`),
+  KEY `INDEX_LUSC` (`declarationid`,`userid`,`status`,`created`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件申报审批人表';
+
+-- ----------------------------
+-- Records of pms_declarations_approver
+-- ----------------------------
+

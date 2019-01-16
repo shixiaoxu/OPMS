@@ -11,6 +11,7 @@ import (
 	"opms/models/overtimes"
 	"opms/models/projects"
 	"opms/models/users"
+	"opms/models/declarations"
 	"opms/utils"
 	//"time"
 
@@ -28,6 +29,7 @@ func InitTemplate() {
 	beego.AddFuncMap("getGooutProcess", goouts.ListGooutApproverProcessHtml)
 	beego.AddFuncMap("getOagoodProcess", oagoods.ListOagoodApproverProcessHtml)
 	beego.AddFuncMap("getOvertimeProcess", overtimes.ListOvertimeApproverProcessHtml)
+	beego.AddFuncMap("getdeclarationProcess", declarations.ListDeclarationApproverProcessHtml)
 
 	beego.AddFuncMap("getDate", utils.GetDate)
 	beego.AddFuncMap("getDateMH", utils.GetDateMH)
@@ -56,4 +58,5 @@ func InitTemplate() {
 	beego.AddFuncMap("getMessageType", utils.GetMessageType)
 	beego.AddFuncMap("getMessageSubtype", utils.GetMessageSubtype)
 
+	beego.AddFuncMap("getFileName", utils.GetFileName)
 }

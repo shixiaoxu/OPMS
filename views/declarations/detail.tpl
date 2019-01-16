@@ -25,10 +25,10 @@
       <h3> 审批管理 {{template "inc/checkwork-nav.tpl" .}}</h3>
       <ul class="breadcrumb pull-left">
         <li> <a href="/user/show/{{.LoginUserid}}">OPMS</a> </li>
-        <li> <a href="/oagood/manage">审批管理</a> </li>
-        <li class="active"> 领用单详情 </li>
+        <li> <a href="/declaration/manage">审批管理</a> </li>
+        <li class="active"> 申报单详情 </li>
       </ul>
-      <div class="pull-right"> <a href="javascript:history.back();" class="btn btn-default">返回</a> <a href="/oagood/approval" class="hidden-xs btn btn-default" style="padding:4px;">待审批</a> <a href="/oagood/add" class="btn btn-success">+我要领用</a> </div>
+      <div class="pull-right"> <a href="javascript:history.back();" class="btn btn-default">返回</a> <a href="/declaration/approval" class="hidden-xs btn btn-default" style="padding:4px;">待审批</a> <a href="/declaration/add" class="btn btn-success">+我要申报</a> </div>
     </div>
     <div class="clearfix"></div>
     <!-- page heading end-->
@@ -40,38 +40,38 @@
             <div class="single-blog">
               <div class="panel">
                 <div class="panel-body">
-                  <h1 class="text-center mtop35"><a href="#">领用单</a>
+                  <h1 class="text-center mtop35"><a href="#">申报单</a>
                     <button onClick="myPrint(document.getElementById('print'))" class="pull-right btn">打 印</button>
                   </h1>
-                  <p class="text-center auth-row"> By <a href="/user/show/{{.oagood.Userid}}">{{getRealname .oagood.Userid}}</a> | {{getDateMH .oagood.Changed}}</p>
+                  <p class="text-center auth-row"> By <a href="/user/show/{{.declaration.Userid}}">{{getRealname .declaration.Userid}}</a> | {{getDateMH .declaration.Changed}}</p>
                   <div id="print">
                     <table class="table table-bordered" border="1">
                       <tr class="hide">
-                        <th colspan="6" class="text-center">物品领用单</th>
+                        <th colspan="6" class="text-center">申报单</th>
                       </tr>
                       <tr>
                         <td width="72">姓名</td>
-                        <td width="62">{{getRealname .oagood.Userid}}</td>
+                        <td width="62">{{getRealname .declaration.Userid}}</td>
                         <td width="70">部门</td>
-                        <td width="77">{{getDepartmentsName .oagood.Userid}}</td>
+                        <td width="77">{{getDepartmentsName .declaration.Userid}}</td>
                         <td width="80">职位</td>
-                        <td width="93">{{getPositionsName .oagood.Userid}}</td>
+                        <td width="93">{{getPositionsName .declaration.Userid}}</td>
                       </tr>
                       <tr>
-                        <td>日期</td>
-                        <td colspan="5">{{getDateMH .oagood.Changed}}</td>
+                        <td>申报项目</td>
+                        <td colspan="5">{{.declaration.Objects}}</td>
                       </tr>
                       <tr>
-                        <td>物品用途</td>
-                        <td colspan="5">{{.oagood.Purpose}}</td>
-                      </tr>
-                      <tr id="oagood-box">
-                        <td>物品详情</td>
-                        <td colspan="5">{{.oagood.Content}}</td>
+                        <td>申报日期</td>
+                        <td colspan="5">{{getDateMH .declaration.Changed}}</td>
                       </tr>
                       <tr>
-                        <td>物品名称</td>
-                        <td colspan="5">数量</td>
+                        <td>申报类型</td>
+                        <td colspan="5">{{.declaration.Types}}</td>
+                      </tr>
+                      <tr>
+                         <td>申报明细</td>
+                         <td colspan="5">{{.declaration.Contents}}</td>
                       </tr>
                       <tr  class="hide">
                         <td>审核人</td>
@@ -91,15 +91,15 @@
                   </div>
 
                   <div>
-                    {{if ne .oagood.Picture ""}}
-                      <a href="{{.oagood.Picture}}" target="_blank"><span>预览</span>附件</a>
-                      <a href="{{.oagood.Picture}}" download="{{getFileName .oagood.Picture}}"><span>下载</span>附件</a>
-                      <br></br>
+                    {{if ne .declaration.Files ""}}
+                       	<a href="{{.declaration.Files}}" target="_blank"><span>预览</span>附件</a>
+                       	<a href="{{.declaration.Files}}" download="{{getFileName .declaration.Files}}"><span>下载</span>附件</a>
                     {{end}}
+                    <br></br>
                   </div>
 
                   <a class="btn btn-xs btn-warning" style="margin-bottom:6px;">审批人进度</a>
-                  <div class="js-selectuserbox"> {{str2html (getOagoodProcess .oagood.Id)}} </div>
+                  <div class="js-selectuserbox"> {{str2html (getdeclarationProcess .declaration.Id)}} </div>
                 </div>
               </div>
               <div class="panel">
@@ -117,11 +117,11 @@
                   {{else}}
                   <p class="text-center fade-txt">第
                     <script>document.write({{($k)}}+1)</script>
-                    位审批人还没有审批此领用条!</p>
+                    位审批人还没有审批此申报条!</p>
                   {{end}}
                   {{end}} </div>
               </div>
-              {{if ne .oagood.Userid .LoginUserid}}
+              {{if ne .declaration.Userid .LoginUserid}}
               <div class="panel">
                 <div class="panel-body">
                   <h1 class="text-center cmnt-head ">审批</h1>
@@ -130,7 +130,7 @@
                   <h1 class="text-center cmnt-head ">你已经审批过！</h1>
                   {{else}}
                   {{if eq .checkApproverCan 1}}
-                  <form role="form" class="form-horizontal oagood-cmnt" id="oagood-approvers-form">
+                  <form role="form" class="form-horizontal declaration-cmnt" id="declaration-approvers-form">
                     <div class="form-group">
                       <div class="col-lg-12">
                         <label class="radio-inline">
@@ -148,7 +148,7 @@
                     </div>
                     <p>
                       <input type="hidden" name="id" value="{{.checkApproverid}}">
-                      <input type="hidden" name="oagoodid" value="{{.oagood.Id}}">
+                      <input type="hidden" name="declarationid" value="{{.declaration.Id}}">
                       <button class="btn btn-primary pull-right" type="submit">提 交</button>
                     </p>
                   </form>
@@ -171,19 +171,21 @@
 </section>
 {{template "inc/foot.tpl" .}}
 <script>
-{{if gt .oagood.Id 0}}
-	var names = '{{.oagood.Names}}';
-	var quantitys = '{{.oagood.Quantitys}}';
+{{if gt .declaration.Id 0}}
+	var amounts = '{{.declaration.Objects}}';
+	var types = '{{.declaration.Types}}';
+	var contents = '{{.declaration.Contents}}';
 	
-	namesArr = names.split('||');
-	quantitysArr = quantitys.split('||');
-		
+	amountsArr = amounts.split('||');
+	typesArr = types.split('||');
+	contentsArr = contents.split('||');
+	
 	var html = '';
-	for(var i=0;i<namesArr.length;i++) {	
-		html += '<tr><td>'+namesArr[i]+'</td><td colspan="5">'+quantitysArr[i]+'</td></tr>';
+	for(var i=0;i<amountsArr.length;i++) {	
+		html += '<tr><td>'+typesArr[i]+'</td><td colspan="4">'+contentsArr[i]+'</td><td>'+amountsArr[i]+'</td></tr>';
 	}	
-	//$('#oagood-box').parent().append(html);
-	$('#oagood-box').next('tr').parent().append(html);
+	//$('#declaration-box').parent().append(html);
+	$('#declaration-box').next('tr').parent().append(html);
 {{end}}	
 </script>
 </body>

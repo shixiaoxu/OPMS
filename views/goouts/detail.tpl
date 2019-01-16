@@ -85,6 +85,15 @@
                       {{end}}
                     </table>
                   </div>
+
+                  <div>
+                    {{if ne .goout.Picture ""}}
+                      <a href="{{.goout.Picture}}" target="_blank"><span>预览</span>附件</a>
+                      <a href="{{.goout.Picture}}" download="{{getFileName .goout.Picture}}"><span>下载</span>附件</a>
+                      <br></br>
+                    {{end}}
+                  </div>
+
                   <a class="btn btn-xs btn-warning" style="margin-bottom:6px;">审批人进度</a>
                   <div class="js-selectuserbox"> {{str2html (getGooutProcess .goout.Id)}} </div>
                 </div>

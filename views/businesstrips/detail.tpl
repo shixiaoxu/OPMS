@@ -89,6 +89,15 @@
                       {{end}}
                     </table>
                   </div>
+
+                  <div>
+                    {{if ne .businesstrip.Picture ""}}
+                      <a href="{{.businesstrip.Picture}}" target="_blank"><span>预览</span>附件</a>
+                      <a href="{{.businesstrip.Picture}}" download="{{getFileName .businesstrip.Picture}}"><span>下载</span>附件</a>
+                      <br></br>
+                    {{end}}
+                  </div>
+
                   <a class="btn btn-xs btn-warning" style="margin-bottom:6px;">审批人进度</a>
                   <div class="js-selectuserbox"> {{str2html (getBusinesstripProcess .businesstrip.Id)}} </div>
                 </div>

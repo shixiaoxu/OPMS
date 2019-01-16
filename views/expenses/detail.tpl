@@ -86,6 +86,15 @@
                       {{end}}
                     </table>
                   </div>
+
+                  <div>
+                    {{if ne .expense.Picture ""}}
+                      <a href="{{.expense.Picture}}" target="_blank"><span>预览</span>附件</a>
+                      <a href="{{.expense.Picture}}" download="{{getFileName .expense.Picture}}"><span>下载</span>附件</a>
+                      <br></br>
+                    {{end}}
+                  </div>
+
                   <a class="btn btn-xs btn-warning" style="margin-bottom:6px;">审批人进度</a>
                   <div class="js-selectuserbox"> {{str2html (getExpenseProcess .expense.Id)}} </div>
                 </div>

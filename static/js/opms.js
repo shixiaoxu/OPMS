@@ -1620,7 +1620,88 @@ $(function(){
             });
         }
     });
-	
+
+	/*石晓旭 审批文件申报 开始*/
+    $('#declaration-form').validate({
+        ignore:'',
+        rules : {
+            'objects[]':{required:true},
+            'types[]':{required:true},
+            'contents[]':{required:true}
+        },
+        messages : {
+            'objects[]':{required:'请填写申报项目'},
+            'types[]':{required:'请填写报销类型'},
+            'contents[]':{required:'请填写报销明细'}
+        },
+        submitHandler:function(form) {
+            $(form).ajaxSubmit({
+                type:'POST',
+                dataType:'json',
+                success:function(data) {
+                    dialogInfo(data.message)
+                    if (data.code) {
+                        setTimeout(function(){ window.location.href="/declaration/manage" }, 2000);
+                    } else {
+                        setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+                    }
+                }
+            });
+        }
+    });
+    $('.js-declaration-status').on('click', function(){
+        var that = $(this);
+        var leaveid = that.attr('data-id');
+        $.post('/declaration/ajax/status', {id:leaveid},function(data){
+            dialogInfo(data.message)
+            if (data.code) {
+                setTimeout(function(){ window.location.reload() }, 2000);
+            } else {
+                setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+            }
+
+        },'json');
+    });
+
+    $('.js-declaration-delete').on('click', function(){
+        var that = $(this);
+        var leaveid = that.attr('data-id');
+        $.post('/declaration/ajax/delete', {id:leaveid},function(data){
+            dialogInfo(data.message)
+            if (data.code) {
+                setTimeout(function(){ window.location.reload() }, 2000);
+            } else {
+                setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+            }
+
+        },'json');
+    });
+
+    $('#declaration-approvers-form').validate({
+        ignore:'',
+        rules : {
+            status:{required:true}
+        },
+        messages : {
+            status:{required:'请选择申报类型'}
+        },
+        submitHandler:function(form) {
+            $(form).ajaxSubmit({
+                type:'POST',
+                dataType:'json',
+                success:function(data) {
+                    dialogInfo(data.message)
+                    if (data.code) {
+                        setTimeout(function(){ window.location.reload() }, 2000);
+                    } else {
+                        setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+                    }
+                }
+            });
+        }
+    });
+	/*石晓旭 审批文件申报 结束*/
+
 	//组权限
 	$('#group-form').validate({
         ignore:'',		    

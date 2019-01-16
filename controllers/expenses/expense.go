@@ -234,6 +234,7 @@ func (this *AddExpenseController) Get() {
 
 	this.TplName = "expenses/form.tpl"
 }
+
 func (this *AddExpenseController) Post() {
 	//权限检测
 	if !strings.Contains(this.GetSession("userPermission").(string), "expense-add") {
