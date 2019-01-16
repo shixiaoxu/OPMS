@@ -945,6 +945,11 @@ INSERT INTO `pms_permissions` VALUES ('64809905348939776', '41969010140516352', 
 INSERT INTO `pms_permissions` VALUES ('64815327690625024', '41969010140516352', '任务克隆', 'task-clone', '', '0', '0', '0');
 INSERT INTO `pms_permissions` VALUES ('65140829198487552', '42337482720677888', '知识查看', 'knowledge-view', '', '0', '0', '0');
 INSERT INTO `pms_permissions` VALUES ('65140900749119488', '42338272126439424', '相册查看', 'album-view', '', '0', '0', '0');
+INSERT INTO `pms_permissions` VALUES (304633697523470336, 42334086215241728, '文件申报管理', 'declaration-manage', '', 0, 0, 0);
+INSERT INTO `pms_permissions` VALUES (304700532470059008, 42334086215241728, '文件申报批准', 'declaration-approval', '', 0, 0, 0);
+INSERT INTO `pms_permissions` VALUES (304700700992999424, 42334086215241728, '文件申报添加', 'declaration-add', '', 0, 0, 0);
+INSERT INTO `pms_permissions` VALUES (304701049032151040, 42334086215241728, '文件申报视图', 'declaration-view', '', 0, 0, 0);
+INSERT INTO `pms_permissions` VALUES (304701536624185344, 42334086215241728, '文件申报编辑', 'declaration-edit', '', 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for pms_positions
